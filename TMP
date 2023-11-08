@@ -1,0 +1,10 @@
+import fs from "fs"
+import { file } from 'tmp-promise'
+
+export default defineComponent({
+  async run({ steps, $ }) {
+    const { path, cleanup } = await file();
+    await fs.promises.appendFile(path, Buffer.from("hello, world"))
+    await cleanup();
+  }
+});
